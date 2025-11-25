@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Team World Clock</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 16px;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #ffffff;
+    }
+    .clock-card {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 16px;
+      max-width: 320px;
+      line-height: 1.6;
+      background: #fff;
+    }
+    .clock-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 6px;
+    }
+    .clock-row:last-child {
+      margin-bottom: 0;
+    }
+    .label {
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .time {
+      font-variant-numeric: tabular-nums;
+    }
+  </style>
+</head>
+<body>
+  <div class="clock-card">
+    <div class="clock-row">
+      <span class="label">Marian 🇺🇸</span>
+      <span class="time" id="tz-albuquerque"></span>
+    </div>
+    <div class="clock-row">
+      <span class="label">Jonatas 🇮🇹</span>
+      <span class="time" id="tz-bari"></span>
+    </div>
+    <div class="clock-row">
+      <span class="label">Gavin 🇿🇦</span>
+      <span class="time" id="tz-cape"></span>
+    </div>
+    <div class="clock-row">
+      <span class="label">Jesse 🇦🇺</span>
+      <span class="time" id="tz-brisbane"></span>
+    </div>
+  </div>
+
+  <script>
+    function updateClocks() {
+      const opts = { hour: '2-digit', minute: '2-digit', hourCycle: 'h23' };
+
+      document.getElementById("tz-albuquerque").textContent =
+        new Intl.DateTimeFormat('en-GB', { ...opts, timeZone: 'America/Denver' }).format(new Date());
+
+      document.getElementById("tz-bari").textContent =
+        new Intl.DateTimeFormat('en-GB', { ...opts, timeZone: 'Europe/Rome' }).format(new Date());
+
+      document.getElementById("tz-cape").textContent =
+        new Intl.DateTimeFormat('en-GB', { ...opts, timeZone: 'Africa/Johannesburg' }).format(new Date());
+
+      document.getElementById("tz-brisbane").textContent =
+        new Intl.DateTimeFormat('en-GB', { ...opts, timeZone: 'Australia/Brisbane' }).format(new Date());
+    }
+
+    updateClocks();
+    setInterval(updateClocks, 60000);
+  </script>
+</body>
+</html>
